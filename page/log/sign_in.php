@@ -140,9 +140,9 @@ require_once "../../inc/header.php";
                         // sécurisation des caractères
                         $_POST[$key] = htmlentities(addslashes(trim($value, " \n\r\t\v\x00...\x1F")), ENT_QUOTES);
                         break;
-                    case 'password':
-                        $_POST[$key] = password_hash($value, PASSWORD_BCRYPT);
-                        break;
+                        // case 'password':
+                        //     $_POST[$key] = password_hash($value, PASSWORD_BCRYPT);
+                        //     break;
                     default:
                         break;
                 }
@@ -152,7 +152,7 @@ require_once "../../inc/header.php";
             $user = $_POST['username'];
             $password = $_POST['password'];
             $email = $_POST['email'];
-            $token = md5(uniqid(rand(), TRUE)) . md5(uniqid(rand(), TRUE));
+
 
             if ($test) {
                 // si pas d'erreur détecté
@@ -180,10 +180,10 @@ require_once "../../inc/header.php";
                         $sth = dbInsert($sth, $params, $vars);
 
                         // récupération de l'id généré
-                        $sql = "SELECT id FROM " . TABLE_TEMPO . " WHERE log_user = '$user' LIMIT 1;";
-                        $sqlResult = $conn->query($sql);
-                        $tuple = $sqlResult->fetch(PDO::FETCH_ASSOC);
+                        $tuple = new User($user, $password);
+                        $tuple = $tuple->getObject(TABLE_TEMPO, 'log_user', $user);
                         $id = $tuple['id'];
+                        unset($tuple);
 
                         // envoie de mail
                         require_once "../../classes/mail.class.php";
@@ -196,7 +196,6 @@ require_once "../../inc/header.php";
                             // erreur d'envoi du mail
                             echo '<div class="alert alert-danger alert-dismissible"><span>Erreur : échec de l\'envoie du mail.</span>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
-                            $test = false;
                         }
                     } else {
                         // existences de l'user

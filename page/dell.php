@@ -70,39 +70,18 @@ require_once "../inc/header.php";
         $id = base64_decode($_GET['m']);
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-            try {
-                // connexion db avec ça création si elle existe
-                $db = new Database();
-                $conn = $db->getPDO();
-                unset($db);
+            $sth = new Crud();
+            // suppression de la photo
+            $sth->delPic(TABLE_POST, $id);
+            // suppression du tuples
+            $sth->delete(TABLE_POST, $id);
+            unset($sth);
 
-                // récup du nom du fichier
-                $sql = "SELECT `photo` FROM " . TABLE_POST . " WHERE `id` = $id;";
-                $stResult = $conn->query($sql);
-                $fileName = $stResult->fetch(PDO::FETCH_ASSOC);
-                $fileName = $fileName['photo'];
+            echo "<p>Le poste a bien été supprimé avec son image</p>";
 
-                // suppression du fichier
-                $fileLocal = '../pic/' . $fileName;
-                if (file_exists($fileLocal)) {
-                    unlink($fileLocal);
-                }
-
-                // suppression du tuples
-                $sth = new Crud();
-                $sth->delete(TABLE_POST, $id);
-                unset($sth);
-
-                echo "<p>Le poste a bien été supprimé avec son image</p>";
-
-                header('Location:../page/form.php');
-            }
-
-            // On capt les exceptions si une exception est lancée et on affiche les info relat à celle-ci
-            catch (PDOException $e) {
-                die("<p>Impossible de se connecter au serveur " . DB_DATABASE . " : " . $e->getMessage() . "</p>");
-            }
+            header('Location:../index.php');
         }
+
         ?>
         <h2>Vous allez supprimé définitivement vous données <?php echo $id ?>, êtes vous sur de les supprimer ?</h2>
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]) . '?m=' . urlencode(base64_encode($id)); ?>" method="post">
@@ -110,10 +89,7 @@ require_once "../inc/header.php";
             <a class="btn txt-center t_deco-none txt-dark" href="../index.php">Annuler</a>
         </form>
     </main>
-    <?php
-    // On ferme la co
-    unset($conn);
-    ?>
+
 </body>
 
 </html>

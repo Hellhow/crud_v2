@@ -83,6 +83,7 @@ require_once "../../inc/header.php";
         if (!empty($_SESSION)) {
             header("Location:../../index.php");
         }
+        session_destroy();
 
         // msg d'inscription
         if (!empty($_GET)) {
@@ -92,39 +93,14 @@ require_once "../../inc/header.php";
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // var du form de co
-            $user = $_POST['username'];
+            $userName = $_POST['username'];
             $password = $_POST['password'];
-            $dateCo = date("H:i:s d-m-Y");
-            try {
-                // connexion db avec ça création si elle existe
-                $db = new Database();
-                $conn = $db->getPDO();
 
-                // vérification de connexion
-                $sql = "SELECT log_user, log_password, id_job FROM " . TABLE_LOGIN . " WHERE log_user = '$user' LIMIT 1;";
-                $sqlResult = $conn->query($sql);
-                $tuple = $sqlResult->fetch(PDO::FETCH_ASSOC);
-                if ($tuple === false) {
-                    // user n'existe pas
-                    echo ('<div class="alert alert-danger alert-dismissible"><span>Erreur : ' . $user . ' est inexistant.</span>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
-                } elseif (!password_verify($password, $tuple['log_password'])) {
-                    // pas le bon mdp
-                    echo ('<div class="alert alert-danger alert-dismissible"><span>Erreur : mot de passe incorrect.</span>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>');
-                    // $tryCo++;
-                } else {
-                    // co de l'user
-                    session_start();
-                    $_SESSION['login'] = true;
-                    $_SESSION['job'] = $tuple['id_job'];
-                    header("Location:../../index.php?");
-                }
-            }
-
-            // pour les erreurs de co à la base
-            catch (PDOException $e) {
-                die("<p>Impossible de se connecter au serveur " . DB_DATABASE . " : " . $e->getMessage() . "</p>");
+            // connexion de l'utilisateur
+            $user = new User($userName, $password);
+            $testCo = $user->connexion(TABLE_LOGIN);
+            if ($testCo) {
+                header("Location:../../index.php?");
             }
         }
         ?>

@@ -67,19 +67,13 @@ require_once "./inc/header.php";
         if ($_SESSION['login'] != true) {
             header("Location:./page/log/login.php");
         }
-        // if (!empty($_GET)) {
-        //     echo base64_decode($_GET['m']);
-        // }
-        echo '<h2 class="txt-center border-dark">Bonjour M. ';
+        echo '<h2 class="txt-center border-dark">Bonjour ';
         switch ($_SESSION['job']) {
             case 0:
-                echo "l'administrateur";
+                echo 'Administrateur ' . strtoupper($_SESSION['user']);
                 break;
             case 1:
-                echo "l'inscrit";
-                break;
-            case 9:
-                echo "BADBEAFORE";
+                echo 'M. ' . $_SESSION['user'];
                 break;
             default:
                 break;
@@ -91,25 +85,13 @@ require_once "./inc/header.php";
             session_destroy();
             header("Location:./page/log/login.php");
         }
-
-        try {
-            // connexion db avec ça création si elle existe
-            $db = new Database();
-            $conn = $db->getPDO();
-            unset($db);
-
-            displayCards(TABLE_POST);
-
-            displayRss(TABLE_RSS);
-        }
-
-        // pour les erreurs de co à la base
-        catch (PDOException $e) {
-            die("<p>Impossible de se connecter au serveur " . DB_DATABASE . " : " . $e->getMessage() . "</p>");
-        }
-
-        // On ferme la co
-        unset($conn);
+        // affichage
+        $sth = new Crud();
+        // affichage  des postes
+        $sth->displayCards(TABLE_POST);
+        // affichage du flux rss de la une du monde
+        $sth->displayRss(TABLE_RSS);
+        unset($sth);
         ?>
     </main>
     <footer class="d-flex g-1">
