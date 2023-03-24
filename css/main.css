@@ -1,0 +1,141 @@
+/* ANCHOR Signature
+    ._________.
+    | > \   < |
+    | \\[T]// |
+    |  \|O|/  |
+    |   |Y|   |
+    |  _|||_  |
+    |_________| 
+
+*/
+
+/* SECTION Card__CSS */
+
+/* ANCHOR Card */
+.collection__cards {
+    max-width: 1330px;
+    margin: 1rem auto;
+    flex-flow: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.card {
+    max-width: 35rem;
+    padding: 1.5625rem;
+    background-color: var(--light);
+}
+
+.collection__cards,
+.card__header,
+.card__caract,
+.card__description {
+    display: flex;
+}
+
+.card__header,
+.card__caract {
+    justify-content: space-between;
+}
+
+.card__date {
+    text-align: end;
+}
+
+.card__score {
+    padding: 5px;
+    margin-bottom: 1rem;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.card__score .fa-star {
+    padding: 3px;
+    border: 1px solid #000;
+    border-radius: 50%;
+    font-size: small;
+}
+
+.card__score .fa-star:hover {
+    cursor: pointer;
+    background-color: var(--gold);
+}
+
+.card__description {
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card__img,
+.card__description {
+    margin-bottom: 1rem;
+    background-color: #fff;
+}
+
+.card__img,
+.card__description,
+.card {
+    border: 2px solid var(--dark);
+    border-radius: 5px;
+}
+
+.card__img {
+    width: 31.5rem;
+    height: 31.5rem;
+    object-fit: cover;
+}
+
+.card__img img {
+    height: calc(31.5rem - 4px);
+}
+
+.card__description {
+    padding: 0.5rem;
+    max-width: 31.5rem;
+    height: 15.5rem;
+}
+
+.card__link {
+    text-decoration: none;
+}
+
+.card__auteur {
+    text-align: end;
+}
+
+/* ANCHOR card__form */
+
+.card__form {
+    border: 1px solid var(--dark);
+    max-width: 500px;
+    padding: 1rem;
+    margin: 0 auto;
+}
+
+.card__form fieldset {
+    border: 1px solid var(--light);
+    padding: 0.5rem;
+}
+
+.card__formBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.card__inputTitle {
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.card__textarea {
+    resize: none;
+    height: 250px;
+}
+
+.card__formAuteur {
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* !SECTION Card__CSS */

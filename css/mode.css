@@ -1,0 +1,602 @@
+/* ANCHOR Signature
+    ._________.
+    | > \   < |
+    | \\[T]// |
+    |  \|O|/  |
+    |   |Y|   |
+    |  _|||_  |
+    |_________| 
+
+*/
+
+/* SECTION MODE83 FRAMEWORK */
+
+/* ANCHOR REBOOT */
+
+@import '1_reset.css';
+/* @import '2_normalize.css'; */
+
+:root {
+    font-size: 62.7%;
+    --dark: #1e1e1e;
+    --light: #e1e1e1;
+    --red: #f00;
+    --blue: #00f;
+    --gold: #ffd700;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+    /* border: 1px dashed var(--light);
+    background-color: hsla(0, 0%, 0%, 0.1); */
+    /* Roue Chromatique, saturation, luminosité, alpha*/
+}
+
+body {
+    margin: 0;
+    font-size: large;
+}
+
+img,
+video,
+svg {
+    width: 100%;
+    height: auto;
+}
+
+figure {
+    margin: 0;
+}
+
+textarea {
+    resize: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+li {
+    margin: 0 0 1rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Monda', sans-serif;
+}
+
+/* ANCHOR FLEX/GRID CONTAINER (PARENT) */
+
+.d-flex {
+    display: flex;
+}
+
+.fw-wrap {
+    flex-wrap: wrap;
+}
+
+
+.fw-wrap-r {
+    flex-wrap: wrap-reverse;
+}
+
+.fd-row {
+    flex-direction: row;
+}
+
+.fd-row-r {
+    flex-direction: row-reverse;
+}
+
+.fd-col {
+    flex-direction: column;
+}
+
+.fd-col-r {
+    flex-direction: column-reverse;
+}
+
+.jc-c {
+    justify-content: center;
+}
+
+.jc-fe {
+    justify-content: flex-end;
+}
+
+.jc-sb {
+    justify-content: space-between;
+}
+
+.jc-se {
+    justify-content: space-evenly;
+}
+
+.jc-sa {
+    justify-content: space-around;
+}
+
+.ji-c {
+    justify-items: center;
+}
+
+.ai-c {
+    align-items: center;
+}
+
+.ac-c {
+    align-content: center;
+}
+
+.ac-sa {
+    align-content: space-around;
+}
+
+.g-1 {
+    gap: 1rem;
+}
+
+.g-2 {
+    gap: 2rem;
+}
+
+.g-3 {
+    gap: 3rem;
+}
+
+.d-grid {
+    display: grid;
+}
+
+/* ANCHOR FLEX/GRID ITEM (ENFANT) */
+
+.f-1 {
+    flex: 1 1 auto;
+}
+
+.f-2 {
+    flex: 2 1 auto;
+}
+
+.f-1-145 {
+    flex: 1 1 145px;
+}
+
+.f-1-200 {
+    flex: 1 1 200px;
+}
+
+.f-1-280 {
+    flex: 1 1 280px;
+}
+
+.f-1-300 {
+    flex: 1 1 300px;
+}
+
+.f-1-330 {
+    flex: 1 1 330px;
+}
+
+.f-1-335 {
+    flex: 1 1 335px;
+}
+
+.f-1-500 {
+    flex: 1 1 500px;
+}
+
+.f-1-1078 {
+    flex: 1 1 1078px;
+}
+
+.f-2-670 {
+    flex: 2 1 670px;
+}
+
+.as-fe {
+    align-self: flex-end;
+}
+
+.as-c {
+    align-self: center;
+}
+
+.g-col-s2 {
+    grid-column: span 2;
+}
+
+.ga-1-1-1-1 {
+    grid-area: 1 /1 /1 /1;
+}
+
+.js-fe {
+    justify-self: flex-end;
+}
+
+.js-c {
+    justify-self: center;
+}
+
+/* ANCHOR SIZING */
+
+.mw-280 {
+    max-width: 280px;
+}
+
+.mw-350 {
+    max-width: 350px;
+}
+
+.mw-500 {
+    max-width: 500px;
+}
+
+.mw-900 {
+    max-width: 900px;
+}
+
+.mw-1072 {
+    max-width: 1072px;
+}
+
+.mw-1320 {
+    max-width: 1320px;
+}
+
+.mw-1920 {
+    max-width: 1920px;
+}
+
+/* ANCHOR SPACING */
+
+.m-auto {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.my-1 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.mt-1 {
+    margin-top: 1rem;
+}
+
+.mt-2 {
+    margin-top: 2rem;
+}
+
+.my-2 {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.my-3 {
+    margin-left: 3rem;
+    margin-right: 3rem;
+}
+
+.mb-0 {
+    margin-bottom: 0rem;
+}
+
+.mb-1 {
+    margin-bottom: 1rem;
+}
+
+.mb-2 {
+    margin-bottom: 2rem;
+}
+
+.mb-3 {
+    margin-bottom: 3rem;
+}
+
+.mb-7 {
+    margin-bottom: 7rem;
+}
+
+.mr-auto {
+    margin-right: auto;
+}
+
+.mr-18 {
+    margin-right: 18rem;
+}
+
+.p-0 {
+    padding: .5rem;
+}
+
+.p-1 {
+    padding: 1rem;
+}
+
+.p-2 {
+    padding: 2rem;
+}
+
+.p-3 {
+    padding: 3rem;
+}
+
+.px-1 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.px-3 {
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+.pt-3 {
+    padding-top: 3rem;
+}
+
+.pr-1 {
+    padding-right: 1rem;
+}
+
+.pr-2 {
+    padding-right: 2rem;
+}
+
+.pl-1 {
+    padding-left: 1rem;
+}
+
+.pl-2 {
+    padding-left: 2rem;
+}
+
+.py-1 {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.py-2 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.py-3 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+.py-6 {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+}
+
+.p-relative {
+    position: relative;
+}
+
+.p-absolue {
+    position: absolute;
+}
+
+/* ANCHOR TYPO */
+
+.fs-0 {
+    font-size: 0.50rem;
+    font-weight: normal;
+}
+
+.fs-1 {
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+.fs-1_5 {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.fs-2 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.fs-3 {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.fs-4 {
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+.fs-5 {
+    font-size: 5rem;
+    font-weight: bold;
+}
+
+.fs-7 {
+    font-size: 7rem;
+    font-weight: bold;
+}
+
+.txt-center {
+    text-align: center;
+}
+
+.txt-inherit {
+    color: inherit;
+}
+
+.txt-light {
+    color: var(--light);
+}
+
+.txt-dark {
+    color: var(--dark);
+}
+
+.txt-red {
+    color: var(--red);
+}
+
+.txt-gold {
+    color: var(--gold);
+}
+
+.t_deco-none {
+    text-decoration: none;
+}
+
+/* ANCHOR BOTTON */
+
+.btn {
+    padding: 1rem 4rem;
+    border-radius: 5px;
+    border: 1px solid var(--dark);
+}
+
+.btn:hover {
+    color: var(--light);
+    border-color: var(--light);
+    background-color: var(--dark);
+}
+
+.border-light {
+    border-color: var(--light);
+}
+
+.btn.txt-light:hover {
+    color: var(--dark);
+}
+
+.btn.border-light:hover {
+    border-color: var(--dark);
+}
+
+.btn.bg-light:hover {
+    background-color: var(--dark);
+}
+
+.btn.bg-red.txt-light:hover {
+    background-color: var(--light);
+    color: var(--red);
+}
+
+.btn.txt-light.bg-blue:hover {
+    background-color: var(--light);
+    color: var(--blue);
+}
+
+.border-3 {
+    border-width: 3px;
+}
+
+.active,
+.active:hover {
+    border-bottom: 2px solid var(--red);
+}
+
+.zoom {
+    transition: ease 0.5s;
+}
+
+.zoom:hover {
+    transform: scale(1.2);
+}
+
+.overlay {
+    /* padding: 130px 240px; */
+    background-color: #080;
+    background-size: auto;
+    opacity: 0;
+    transition: all 0.5s;
+}
+
+.overlay:hover {
+    opacity: 1;
+}
+
+/* ANCHOR OTHER */
+
+.bold {
+    font-weight: bold;
+}
+
+.bolder {
+    font-weight: bolder;
+}
+
+.lighter {
+    font-weight: lighter;
+}
+
+.f-weight-400 {
+    font-weight: 400;
+}
+
+.f-weight-500 {
+    font-weight: 500;
+}
+
+.d-iblock {
+    display: inline-block;
+}
+
+.d-block {
+    display: block;
+}
+
+.d-inline {
+    display: inline;
+}
+
+.border-dark {
+    border: 1px solid var(--dark);
+}
+
+.bg-light {
+    background-color: var(--light);
+}
+
+.bg-red {
+    background-color: var(--red);
+}
+
+.bg-blue {
+    background-color: var(--blue);
+}
+
+.bg-dbz {
+    background-color: var(--gold);
+    color: var(--red);
+}
+
+.bg-trans {
+    background-color: var(--dark);
+}
+
+.border-none {
+    border: none;
+}
+
+.radius-5 {
+    border-radius: 5px;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+/* !SECTION */
