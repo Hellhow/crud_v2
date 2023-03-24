@@ -1,5 +1,5 @@
 # Projet blogue avec un crud et un login
-Contenu du fichier db_config.php dans le doc .config
+Contenu du fichier db_config.php dans le doc .config, pour générer la Database avec les tables (utilisez vos paramètre de connexion à votre DB et pensez à nommer la DB et les tables)
 ```php 
 <?php
 define('DB_HOST', '');
